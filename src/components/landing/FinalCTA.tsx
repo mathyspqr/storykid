@@ -7,7 +7,7 @@ const micro = ["Sans compte", "Sans carte bancaire", "Aperçu en ligne immédiat
 
 export function FinalCTA() {
   return (
-    <section className="px-5 pb-5 pt-6 sm:px-6 sm:pt-8 lg:px-8">
+    <section className="px-5 pb-5 pt-4 sm:px-6 sm:pt-6 lg:px-8">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[24px] bg-[#07123a] px-5 py-9 text-center text-white shadow-[0_28px_90px_rgba(7,18,58,0.25)] sm:px-12 md:rounded-[28px] md:py-11 md:text-left lg:px-16">
         <div className="relative grid min-h-[220px] gap-6 md:grid-cols-[350px_1fr] md:items-center md:gap-8">
           <div className="absolute inset-0 opacity-85 [background-image:radial-gradient(circle_at_14%_18%,rgba(255,255,255,0.55)_1px,transparent_2px),radial-gradient(circle_at_80%_22%,rgba(255,255,255,0.5)_1px,transparent_2px),radial-gradient(circle_at_68%_72%,rgba(255,255,255,0.36)_1px,transparent_2px),radial-gradient(circle_at_40%_40%,rgba(124,92,255,0.35),transparent_22%)]" />
@@ -17,7 +17,7 @@ export function FinalCTA() {
               src={logoCrystal}
               alt=""
               sizes="120px"
-              className="h-32 w-32 object-contain drop-shadow-[0_0_70px_rgba(255,255,255,0.62)] md:h-48 md:w-48"
+              className="h-32 w-32 object-contain drop-shadow-[0_0_86px_rgba(255,255,255,0.72)] md:h-48 md:w-48"
             />
           </div>
           <div className="relative">
@@ -29,7 +29,7 @@ export function FinalCTA() {
             </p>
             <Link
               href="/create-story"
-              className="mt-6 inline-flex h-[54px] w-full max-w-[460px] items-center justify-center rounded-xl bg-[#ff6257] px-9 text-sm font-extrabold text-white shadow-[0_18px_42px_rgba(255,98,87,0.34)] transition hover:-translate-y-0.5 hover:bg-[#f2554a] hover:shadow-[0_22px_52px_rgba(255,98,87,0.42)]"
+              className="mt-6 inline-flex h-[56px] w-full max-w-[480px] items-center justify-center rounded-xl bg-[#ff6257] px-9 text-sm font-extrabold text-white shadow-[0_20px_48px_rgba(255,98,87,0.36)] transition hover:-translate-y-0.5 hover:bg-[#f2554a] hover:shadow-[0_24px_58px_rgba(255,98,87,0.44)]"
             >
               Créer mon aperçu gratuit
             </Link>

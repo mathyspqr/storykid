@@ -30,14 +30,14 @@ export function StoryKidAppMockup() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative mx-auto grid w-full max-w-[840px] grid-cols-1 items-center gap-4 sm:grid-cols-[0.82fr_1.18fr]"
+      className="relative mx-auto grid w-full max-w-[860px] grid-cols-1 items-center gap-4 sm:grid-cols-[0.74fr_1.26fr]"
     >
       <div className="absolute -inset-8 rounded-[42px] bg-[radial-gradient(circle_at_15%_25%,rgba(255,255,255,0.95),transparent_26%),radial-gradient(circle_at_86%_44%,rgba(124,92,255,0.2),transparent_32%),radial-gradient(circle_at_58%_86%,rgba(255,98,87,0.14),transparent_30%)] blur-2xl" />
 
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-10 order-2 hidden min-w-0 overflow-hidden rounded-[24px] border border-[#e9eaf3] bg-white shadow-[0_24px_70px_rgba(9,15,48,0.11)] sm:block sm:min-w-[326px] sm:translate-x-10 sm:scale-[0.93]"
+        className="relative z-10 order-2 hidden min-w-0 overflow-hidden rounded-[24px] border border-[#e9eaf3] bg-white/92 shadow-[0_22px_62px_rgba(9,15,48,0.09)] sm:block sm:min-w-[314px] sm:translate-x-14 sm:scale-[0.88]"
       >
         <div className="grid min-h-[315px] grid-cols-[52px_1fr]">
           <aside className="flex flex-col items-center gap-5 border-r border-[#eef0f6] bg-white px-3 py-6">
@@ -107,13 +107,13 @@ export function StoryKidAppMockup() {
         initial={{ opacity: 0, x: 20, rotate: 2 }}
         animate={{ opacity: 1, x: 0, rotate: 0 }}
         transition={{ delay: 0.25, duration: 0.55, ease: "easeOut" }}
-        className="relative z-20 order-1 -ml-0 sm:order-2 sm:-ml-12"
+        className="relative z-20 order-1 -ml-0 sm:order-2 sm:-ml-16"
       >
         <motion.div
           animate={{ y: [0, -12, 0], rotate: [0, 1.2, -0.4, 0] }}
           transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <PremiumBookCover book={book} size="hero" className="max-w-[300px] min-[390px]:max-w-[330px] sm:max-w-[378px]" priority />
+          <PremiumBookCover book={book} size="hero" className="max-w-[300px] min-[390px]:max-w-[330px] sm:max-w-[405px]" priority />
         </motion.div>
         <div className="absolute bottom-7 left-1/2 z-30 w-[42%] -translate-x-1/2 sm:bottom-8 sm:w-[40%]">
           <button className="inline-flex h-7 w-full items-center justify-center gap-1 rounded-md bg-[#ff6257] px-2 text-[10px] font-extrabold text-white shadow-[0_8px_18px_rgba(255,98,87,0.2)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]">

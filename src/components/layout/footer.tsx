@@ -23,7 +23,7 @@ export function Footer() {
           <div>
             <BrandLogo />
             <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-[#626b89]">
-              Des mini-livres personnalisés, illustrés et doux à lire le soir.
+              Des mini-livres personnalisés pour accompagner les petits moments de l’enfance.
               Aperçu gratuit, sans compte et sans photo d’enfant.
             </p>
           </div>

@@ -196,14 +196,14 @@ function Hero() {
     <section className="relative bg-[radial-gradient(circle_at_82%_42%,rgba(124,92,255,0.12),transparent_26%),linear-gradient(180deg,#ffffff_0%,#fbfbff_100%)] px-5 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-9">
         <div>
-          <h1 className="max-w-[610px] text-[2.28rem] font-extrabold leading-[1.04] tracking-[-0.055em] text-[#070b2d] min-[390px]:text-[2.52rem] sm:text-[3.95rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
-            Crée un mini-livre personnalisé
-            <span className="block">pour un moment de ton enfant.</span>
+          <h1 className="max-w-[590px] text-[2.34rem] font-extrabold leading-[1.03] tracking-[-0.058em] text-[#070b2d] min-[390px]:text-[2.55rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
+            Ton enfant devient le héros
+            <span className="block">de son histoire du soir.</span>
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
           <p className="mt-4 max-w-[500px] text-base font-semibold leading-7 text-[#4c5578] sm:mt-5 sm:text-lg sm:font-normal sm:leading-8">
-            Peur du noir, rentrée, colère ou confiance : StoryKid transforme
-            quelques détails en une histoire douce à lire en ligne le soir.
+            Peur du noir, rentrée, colère ou confiance : transforme quelques
+            détails en un mini-livre personnalisé à lire en ligne ce soir.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -229,8 +229,8 @@ function Hero() {
               </span>
             ))}
           </div>
-          <p className="mt-3 max-w-[430px] text-xs font-bold leading-5 text-[#8a91a6]">
-            Pour les 3-9 ans · Peurs, émotions, rentrée, coucher
+          <p className="mt-3 hidden max-w-[430px] text-xs font-bold leading-5 text-[#8a91a6] sm:block">
+            Pensé pour les parents d’enfants de 3 à 9 ans.
           </p>
         </div>
         <StoryKidAppMockup />
@@ -283,21 +283,21 @@ function InputOutputPanel() {
   const book = landingBookExamples[0];
 
   return (
-    <section id="fonctionnement" className="py-14 md:py-16 lg:py-20">
-      <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+    <section id="fonctionnement" className="scroll-mt-24 py-12 md:py-14 lg:py-16">
+      <div className="mb-5 flex flex-col justify-between gap-3 md:flex-row md:items-end">
         <div>
           <SectionKicker>Fonctionnement</SectionKicker>
           <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-4xl">
             De 5 détails à une <EditorialAccent>vraie histoire.</EditorialAccent>
           </h2>
           <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[#626b89]">
-            Tu donnes le prénom, l’âge, le moment et le ton. StoryKid transforme
-            ces détails en une histoire courte, douce et illustrée.
+            Tu ajoutes quelques détails simples. StoryKid en fait une histoire
+            courte, douce et illustrée autour de ton enfant.
           </p>
         </div>
       </div>
 
-      <div className="grid items-center gap-5 lg:grid-cols-[1.12fr_72px_1fr] lg:gap-4">
+      <div className="grid items-center gap-4 lg:grid-cols-[1.12fr_72px_1fr] lg:gap-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {inputs.map((item) => {
             const Icon = item.icon;
@@ -338,7 +338,7 @@ function InputOutputPanel() {
           </div>
         </div>
       </div>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
         {howSteps.map(([number, title, text]) => (
           <div key={number} className="flex gap-3 rounded-2xl bg-white/60 p-3">
             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#f0edff] text-xs font-extrabold text-[#6b55ef]">
@@ -412,7 +412,7 @@ function WhatChildGetsSection() {
 
 function PricingSection() {
   return (
-    <section id="tarifs" className="py-14 md:py-16 lg:py-24">
+    <section id="tarifs" className="scroll-mt-24 py-14 md:py-16 lg:py-24">
       <div className="mx-auto mb-8 max-w-2xl text-left md:mb-9 md:text-center">
         <SectionKicker>Tarifs</SectionKicker>
         <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-4xl">
@@ -512,7 +512,7 @@ function PricingSection() {
 
 function FAQPanel() {
   return (
-    <section className="pb-6 pt-12 md:pb-10 md:pt-16 lg:pb-12 lg:pt-20">
+    <section className="pb-2 pt-12 md:pb-4 md:pt-16 lg:pb-4 lg:pt-20">
       <div className="mx-auto max-w-4xl">
         <div className="mb-7 text-left md:mb-8 md:text-center">
           <SectionKicker>FAQ</SectionKicker>

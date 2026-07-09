@@ -17,7 +17,7 @@ export function ModernExampleCards() {
   return (
     <section
       id="exemple"
-      className="relative py-12 md:py-16 lg:py-24"
+      className="relative scroll-mt-24 py-12 md:py-16 lg:py-24"
     >
       <button
         type="button"
