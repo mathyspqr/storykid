@@ -4,14 +4,21 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { StoryBookPage } from "@/components/book/StoryBookPage";
-import type { StoryBook, StoryBookPage as StoryBookPageType } from "@/types/book";
+import type { StoryBook } from "@/types/book";
+
+const bookAsset = (name: string) => `/assets/livre-3d/${name}`;
 
 type MobilePageTurn = {
   direction: "next" | "prev";
-  page: StoryBookPageType;
 };
 
-export function StoryBookMobileReader({ book }: { book: StoryBook }) {
+export function StoryBookMobileReader({
+  book,
+  onPrimaryAction,
+}: {
+  book: StoryBook;
+  onPrimaryAction?: () => void;
+}) {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageTurn, setPageTurn] = useState<MobilePageTurn | null>(null);
   const displayPageIndex = pageTurn
@@ -20,16 +27,9 @@ export function StoryBookMobileReader({ book }: { book: StoryBook }) {
       : Math.max(0, pageIndex - 1)
     : pageIndex;
   const page = book.pages[displayPageIndex];
-  const currentPage = book.pages[pageIndex];
   const isFirst = pageIndex === 0;
   const isLast = pageIndex === book.pages.length - 1;
   const isTurning = Boolean(pageTurn);
-
-  const startTurn = (direction: "next" | "prev") => {
-    if (isTurning) return;
-    if (direction === "next" && !isLast) setPageTurn({ direction, page: currentPage });
-    if (direction === "prev" && !isFirst) setPageTurn({ direction, page: currentPage });
-  };
 
   const completeTurn = () => {
     if (!pageTurn) return;
@@ -41,14 +41,20 @@ export function StoryBookMobileReader({ book }: { book: StoryBook }) {
     setPageTurn(null);
   };
 
+  const startTurn = (direction: "next" | "prev") => {
+    if (isTurning) return;
+    if (direction === "next" && !isLast) setPageTurn({ direction });
+    if (direction === "prev" && !isFirst) setPageTurn({ direction });
+  };
+
   return (
     <motion.div
       key="open-mobile"
-      initial={{ opacity: 0, y: 28, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 24, scale: 0.97, filter: "blur(8px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.34, ease: "easeOut" }}
-      className="flex h-full flex-col justify-center px-4 py-5 lg:hidden"
+      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+      className="flex h-full flex-col justify-center px-4 py-4 lg:hidden"
     >
       <div className="mb-4 text-left text-white">
         <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#ff9d95]">
@@ -63,37 +69,55 @@ export function StoryBookMobileReader({ book }: { book: StoryBook }) {
         </p>
       </div>
 
-      <div className="relative mx-auto w-full max-w-[350px]">
-        <div className="absolute -bottom-7 left-8 right-8 h-12 rounded-[50%] bg-black/38 blur-2xl" />
-        <div className="relative h-[520px] overflow-hidden rounded-[30px] bg-[#fff8ea] shadow-[0_30px_88px_rgba(0,0,0,0.34)] ring-1 ring-white/18 [perspective:1400px]">
-          <motion.div
-            key={page.id}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.14}
-            onDragEnd={(_, info) => {
-              if (info.offset.x < -60) startTurn("next");
-              if (info.offset.x > 60) startTurn("prev");
-            }}
-            className="h-full"
-          >
-            <StoryBookPage book={book} page={page} side="single" />
-          </motion.div>
+      <div className="relative mx-auto w-full max-w-[352px]">
+        <div
+          className="pointer-events-none absolute -bottom-[8%] left-[4%] h-[24%] w-[92%] bg-contain bg-center bg-no-repeat opacity-40 blur-[2px]"
+          style={{ backgroundImage: `url(${bookAsset("book-cover-shadow.png")})` }}
+        />
+        <div
+          className="relative h-[520px] overflow-hidden rounded-[30px] shadow-[0_30px_88px_rgba(0,0,0,0.34)] ring-1 ring-white/18"
+          onPointerUp={(event) => {
+            const target = event.currentTarget;
+            const startX = Number(target.dataset.startX ?? 0);
+            const delta = event.clientX - startX;
+            if (delta < -56) startTurn("next");
+            if (delta > 56) startTurn("prev");
+          }}
+          onPointerDown={(event) => {
+            event.currentTarget.dataset.startX = String(event.clientX);
+          }}
+        >
+          <div
+            className="absolute inset-0 bg-[length:100%_100%] bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${bookAsset("book-inner-page-right.png")})` }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.18] mix-blend-multiply"
+            style={{ backgroundImage: `url(${bookAsset("book-paper-texture.png")})`, backgroundSize: "240px 240px" }}
+          />
+          <StoryBookPage
+            book={book}
+            page={page}
+            side="single"
+            onPrimaryAction={onPrimaryAction}
+            className="bg-transparent p-5"
+          />
           {pageTurn && (
             <motion.div
-              key={`${pageTurn.direction}-${pageTurn.page.id}`}
-              className={
-                pageTurn.direction === "next"
-                  ? "pointer-events-none absolute inset-0 z-20 origin-left overflow-hidden rounded-[30px] bg-[#fff8ea] shadow-[-18px_0_34px_rgba(7,11,45,0.18)] [backface-visibility:hidden] [transform-style:preserve-3d]"
-                  : "pointer-events-none absolute inset-0 z-20 origin-right overflow-hidden rounded-[30px] bg-[#fff8ea] shadow-[18px_0_34px_rgba(7,11,45,0.18)] [backface-visibility:hidden] [transform-style:preserve-3d]"
-              }
-              initial={{ rotateY: 0 }}
-              animate={{ rotateY: pageTurn.direction === "next" ? -174 : 174 }}
-              transition={{ duration: 0.62, ease: [0.2, 0.72, 0.17, 1] }}
+              className="pointer-events-none absolute inset-0 z-20 origin-left"
+              initial={{ opacity: 0.95, x: 0, rotateY: 0 }}
+              animate={{
+                opacity: [0.95, 1, 0],
+                x: pageTurn.direction === "next" ? [-4, -34, -62] : [4, 34, 62],
+                rotateY: pageTurn.direction === "next" ? [0, -14, -26] : [0, 14, 26],
+              }}
+              transition={{ duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
               onAnimationComplete={completeTurn}
             >
-              <StoryBookPage book={book} page={pageTurn.page} side="single" />
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.18),transparent_25%,rgba(255,255,255,0.20)_72%,rgba(0,0,0,0.12))]" />
+              <div
+                className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat drop-shadow-[0_16px_30px_rgba(0,0,0,0.18)]"
+                style={{ backgroundImage: `url(${bookAsset("book-page-turn-overlay.png")})` }}
+              />
             </motion.div>
           )}
         </div>

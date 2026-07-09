@@ -4,14 +4,68 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { StoryBookPage } from "@/components/book/StoryBookPage";
-import type { StoryBook, StoryBookPage as StoryBookPageType } from "@/types/book";
+import type { StoryBook } from "@/types/book";
+
+const bookAsset = (name: string) => `/assets/livre-3d/${name}`;
 
 type PageTurn = {
   direction: "next" | "prev";
-  page: StoryBookPageType;
 };
 
-export function StoryBookOpenView({ book }: { book: StoryBook }) {
+function BookPageFrame({
+  book,
+  page,
+  side,
+  onPrimaryAction,
+}: {
+  book: StoryBook;
+  page: StoryBook["pages"][number] | undefined;
+  side: "left" | "right";
+  onPrimaryAction?: () => void;
+}) {
+  if (!page) {
+    return (
+      <div className="relative h-full overflow-hidden">
+        <div
+          className="absolute inset-0 bg-[length:100%_100%] bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${bookAsset(side === "left" ? "book-inner-page-left.png" : "book-inner-page-right.png")})`,
+          }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative h-full overflow-hidden">
+      <div
+        className="absolute inset-0 bg-[length:100%_100%] bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${bookAsset(side === "left" ? "book-inner-page-left.png" : "book-inner-page-right.png")})`,
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.18] mix-blend-multiply"
+        style={{ backgroundImage: `url(${bookAsset("book-paper-texture.png")})`, backgroundSize: "260px 260px" }}
+      />
+      <StoryBookPage
+        book={book}
+        page={page}
+        side={side}
+        onPrimaryAction={onPrimaryAction}
+        className="bg-transparent p-7 md:p-8"
+      />
+    </div>
+  );
+}
+
+export function StoryBookOpenView({
+  book,
+  onPrimaryAction,
+}: {
+  book: StoryBook;
+  onPrimaryAction?: () => void;
+}) {
   const [spreadIndex, setSpreadIndex] = useState(0);
   const [pageTurn, setPageTurn] = useState<PageTurn | null>(null);
   const spreads = useMemo(() => {
@@ -21,36 +75,15 @@ export function StoryBookOpenView({ book }: { book: StoryBook }) {
     }
     return result;
   }, [book.pages]);
-  const displaySpreadIndex = pageTurn
+  const targetSpreadIndex = pageTurn
     ? pageTurn.direction === "next"
       ? Math.min(spreads.length - 1, spreadIndex + 1)
       : Math.max(0, spreadIndex - 1)
     : spreadIndex;
-  const [leftPage, rightPage] = spreads[displaySpreadIndex] ?? [];
-  const [currentLeftPage, currentRightPage] = spreads[spreadIndex] ?? [];
+  const [leftPage, rightPage] = spreads[targetSpreadIndex] ?? [];
   const canGoBack = spreadIndex > 0;
   const canGoNext = spreadIndex < spreads.length - 1;
   const isTurning = Boolean(pageTurn);
-
-  const startTurn = useCallback((direction: "next" | "prev") => {
-    if (isTurning) return;
-    if (direction === "next" && canGoNext && currentRightPage) {
-      setPageTurn({ direction, page: currentRightPage });
-    }
-    if (direction === "prev" && canGoBack && currentLeftPage) {
-      setPageTurn({ direction, page: currentLeftPage });
-    }
-  }, [canGoBack, canGoNext, currentLeftPage, currentRightPage, isTurning]);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!window.matchMedia("(min-width: 1024px)").matches) return;
-      if (event.key === "ArrowRight") startTurn("next");
-      if (event.key === "ArrowLeft") startTurn("prev");
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [startTurn]);
 
   const completeTurn = () => {
     if (!pageTurn) return;
@@ -62,13 +95,32 @@ export function StoryBookOpenView({ book }: { book: StoryBook }) {
     setPageTurn(null);
   };
 
+  const startTurn = useCallback(
+    (direction: "next" | "prev") => {
+      if (isTurning) return;
+      if (direction === "next" && canGoNext) setPageTurn({ direction });
+      if (direction === "prev" && canGoBack) setPageTurn({ direction });
+    },
+    [canGoBack, canGoNext, isTurning],
+  );
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      if (event.key === "ArrowRight") startTurn("next");
+      if (event.key === "ArrowLeft") startTurn("prev");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [startTurn]);
+
   return (
     <motion.div
       key="open-desktop"
-      initial={{ opacity: 0, scale: 0.92, rotateX: 4 }}
-      animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.42, ease: "easeOut" }}
+      initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
+      animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="hidden h-full w-full flex-col items-center justify-center px-8 py-8 lg:flex"
     >
       <div className="mb-5 text-center text-white">
@@ -82,51 +134,67 @@ export function StoryBookOpenView({ book }: { book: StoryBook }) {
         </p>
       </div>
 
-      <div className="relative w-full max-w-[980px]">
-        <div className="absolute -bottom-9 left-20 right-20 h-16 rounded-[50%] bg-black/38 blur-3xl" />
+      <div className="relative w-[min(1080px,86vw)]">
+        <div
+          className="pointer-events-none absolute -bottom-[12%] left-[10%] h-[30%] w-[80%] bg-contain bg-center bg-no-repeat opacity-45 blur-[2px]"
+          style={{ backgroundImage: `url(${bookAsset("book-cover-shadow.png")})` }}
+        />
         <motion.div
-          initial={{ opacity: 0, scale: 0.94, rotateX: 3 }}
-          animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-          transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-          className="relative grid h-[560px] grid-cols-2 overflow-hidden rounded-[34px] bg-[#fff8ea] shadow-[0_34px_100px_rgba(0,0,0,0.36)] ring-1 ring-white/20 [perspective:1800px] [transform-style:preserve-3d]"
+          initial={{ opacity: 0, y: 12, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          className="relative aspect-[1520/980] overflow-hidden rounded-[34px] shadow-[0_34px_110px_rgba(0,0,0,0.38)]"
         >
-          {leftPage && (
-            <StoryBookPage
+          <div className="absolute inset-y-[7%] -left-[2.2%] z-0 w-[8%]">
+            <div
+              className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat opacity-85"
+              style={{ backgroundImage: `url(${bookAsset("book-page-stack-left.png")})` }}
+            />
+          </div>
+          <div className="absolute inset-y-[7%] -right-[2.2%] z-0 w-[8%]">
+            <div
+              className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat opacity-85"
+              style={{ backgroundImage: `url(${bookAsset("book-page-stack-right.png")})` }}
+            />
+          </div>
+          <div className="relative z-10 grid h-full grid-cols-2 overflow-hidden rounded-[34px]">
+            <BookPageFrame
               book={book}
               page={leftPage}
               side="left"
-              className="border-r border-[#e5dccb]"
+              onPrimaryAction={onPrimaryAction}
             />
-          )}
-          {rightPage ? (
-            <StoryBookPage book={book} page={rightPage} side="right" />
-          ) : (
-            <div className="grid h-full place-items-center bg-[#fff8ea] p-8 text-center">
-              <p className="font-editorial text-4xl font-semibold italic text-[#6b55ef]">
-                Fin de l’aperçu
-              </p>
-            </div>
-          )}
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 z-10 w-12 -translate-x-1/2 bg-[linear-gradient(90deg,rgba(7,11,45,0.10),rgba(255,255,255,0.62),rgba(7,11,45,0.10))]" />
+            <BookPageFrame
+              book={book}
+              page={rightPage}
+              side="right"
+              onPrimaryAction={onPrimaryAction}
+            />
+          </div>
+          <div
+            className="pointer-events-none absolute inset-y-0 left-1/2 z-20 h-full w-[12%] -translate-x-1/2 bg-[length:100%_100%] bg-center bg-no-repeat opacity-78"
+            style={{ backgroundImage: `url(${bookAsset("book-center-shadow.png")})` }}
+          />
           {pageTurn && (
             <motion.div
-              key={`${pageTurn.direction}-${spreadIndex}`}
               className={
                 pageTurn.direction === "next"
-                  ? "pointer-events-none absolute bottom-0 right-0 top-0 z-30 w-1/2 origin-left overflow-hidden rounded-r-[34px] bg-[#fff8ea] shadow-[-20px_0_42px_rgba(7,11,45,0.18)] [backface-visibility:hidden] [transform-style:preserve-3d]"
-                  : "pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-1/2 origin-right overflow-hidden rounded-l-[34px] bg-[#fff8ea] shadow-[20px_0_42px_rgba(7,11,45,0.18)] [backface-visibility:hidden] [transform-style:preserve-3d]"
+                  ? "pointer-events-none absolute bottom-0 right-0 top-0 z-30 w-1/2 origin-left"
+                  : "pointer-events-none absolute bottom-0 left-0 top-0 z-30 w-1/2 origin-right"
               }
-              initial={{ rotateY: 0 }}
-              animate={{ rotateY: pageTurn.direction === "next" ? -176 : 176 }}
-              transition={{ duration: 0.7, ease: [0.2, 0.72, 0.17, 1] }}
+              initial={{ opacity: 0.95, x: 0, rotateY: 0 }}
+              animate={{
+                opacity: [0.95, 1, 0],
+                x: pageTurn.direction === "next" ? [-4, -42, -78] : [4, 42, 78],
+                rotateY: pageTurn.direction === "next" ? [0, -18, -34] : [0, 18, 34],
+              }}
+              transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
               onAnimationComplete={completeTurn}
             >
-              <StoryBookPage
-                book={book}
-                page={pageTurn.page}
-                side={pageTurn.direction === "next" ? "right" : "left"}
+              <div
+                className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat drop-shadow-[0_18px_34px_rgba(0,0,0,0.18)]"
+                style={{ backgroundImage: `url(${bookAsset("book-page-turn-overlay.png")})` }}
               />
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.20),transparent_20%,rgba(255,255,255,0.22)_72%,rgba(0,0,0,0.14))]" />
             </motion.div>
           )}
         </motion.div>

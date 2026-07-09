@@ -9,7 +9,7 @@ import { StoryBookMobileReader } from "@/components/book/StoryBookMobileReader";
 import { StoryBookOpenView } from "@/components/book/StoryBookOpenView";
 import type { BookReaderMode, StoryBook } from "@/types/book";
 
-export type ReaderStage = "preview" | "opening" | "reading";
+export type ReaderStage = "cover" | "transitioning" | "reading";
 
 const defaultReaderTheme = {
   background:
@@ -23,14 +23,16 @@ export function StoryBookReader({
   mode = "example",
   open,
   onClose,
+  onPrimaryAction,
 }: {
   book: StoryBook | null;
   mode?: BookReaderMode;
   open: boolean;
   onClose: () => void;
+  onPrimaryAction?: () => void;
 }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [stage, setStage] = useState<ReaderStage>("preview");
+  const [stage, setStage] = useState<ReaderStage>("cover");
   const openingTimerRef = useRef<number | null>(null);
   const theme = book?.readerTheme ?? defaultReaderTheme;
 
@@ -40,7 +42,7 @@ export function StoryBookReader({
 
   useEffect(() => {
     if (open) {
-      setStage("preview");
+      setStage("cover");
     }
   }, [book?.id, open]);
 
@@ -71,12 +73,12 @@ export function StoryBookReader({
   if (!isMounted) return null;
 
   const openBook = () => {
-    if (stage !== "preview") return;
-    setStage("opening");
+    if (stage !== "cover") return;
+    setStage("transitioning");
     if (openingTimerRef.current) window.clearTimeout(openingTimerRef.current);
     openingTimerRef.current = window.setTimeout(() => {
       setStage("reading");
-    }, 980);
+    }, 860);
   };
 
   return createPortal(
@@ -131,8 +133,16 @@ export function StoryBookReader({
                   />
                 ) : (
                   <>
-                    <StoryBookOpenView key="desktop-open" book={book} />
-                    <StoryBookMobileReader key="mobile-open" book={book} />
+                    <StoryBookOpenView
+                      key="desktop-open"
+                      book={book}
+                      onPrimaryAction={onPrimaryAction}
+                    />
+                    <StoryBookMobileReader
+                      key="mobile-open"
+                      book={book}
+                      onPrimaryAction={onPrimaryAction}
+                    />
                   </>
                 )}
               </AnimatePresence>

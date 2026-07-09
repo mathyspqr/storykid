@@ -11,11 +11,13 @@ export function StoryBookPage({
   book,
   page,
   side = "single",
+  onPrimaryAction,
   className,
 }: {
   book: StoryBook;
   page: StoryBookPageType;
   side?: "left" | "right" | "single";
+  onPrimaryAction?: () => void;
   className?: string;
 }) {
   const isMoral = page.type === "moral";
@@ -115,13 +117,24 @@ export function StoryBookPage({
             transition={{ duration: 0.36, delay: 0.34, ease: "easeOut" }}
             className="relative mx-auto mt-6"
           >
-            <Link
-              href="/create-story"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#ff6257] px-6 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
-            >
-              Créer mon aperçu gratuit
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            {onPrimaryAction ? (
+              <button
+                type="button"
+                onClick={onPrimaryAction}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#ff6257] px-6 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
+              >
+                Créer mon aperçu gratuit
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            ) : (
+              <Link
+                href="/create-story"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#ff6257] px-6 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
+              >
+                Créer mon aperçu gratuit
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </motion.div>
         )}
       </div>
