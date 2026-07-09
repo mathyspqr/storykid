@@ -3,7 +3,7 @@
 import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { BookReaderModal } from "@/components/book/BookReaderModal";
+import { StoryBookReader } from "@/components/book/StoryBookReader";
 import { PremiumBookCover } from "@/components/landing/BookProductMockup";
 import { exampleBookById } from "@/data/example-books";
 import { landingBookExamples } from "@/data/landing-examples";
@@ -94,7 +94,7 @@ export function ModernExampleCards() {
         ))}
       </div>
 
-      <BookReaderModal
+      <StoryBookReader
         book={selected}
         mode="example"
         open={Boolean(selected)}

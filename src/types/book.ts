@@ -3,11 +3,10 @@ import type { StaticImageData } from "next/image";
 export type BookReaderMode = "example" | "preview" | "full";
 
 export type StoryBookPageType =
-  | "cover"
   | "story"
   | "moral"
-  | "locked"
-  | "cta";
+  | "cta"
+  | "locked";
 
 export type StoryBookPage = {
   id: string;
@@ -19,6 +18,12 @@ export type StoryBookPage = {
   type?: StoryBookPageType;
 };
 
+export type StoryBookReaderTheme = {
+  background: string;
+  glow: string;
+  accent: string;
+};
+
 export type StoryBook = {
   id: string;
   title: string;
@@ -27,6 +32,7 @@ export type StoryBook = {
   theme?: string;
   tone?: string;
   coverImage?: StaticImageData | string;
+  readerTheme?: StoryBookReaderTheme;
   pages: StoryBookPage[];
   moral?: string;
 };

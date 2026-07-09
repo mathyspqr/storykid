@@ -12,14 +12,14 @@ export const exampleBooks = [
     theme: "Peur du noir",
     tone: "Doux et rassurant",
     coverImage: heroBookLeo,
+    readerTheme: {
+      background:
+        "radial-gradient(circle at 70% 20%, rgba(91, 72, 204, 0.30), transparent 31%), radial-gradient(circle at 22% 32%, rgba(23, 139, 164, 0.22), transparent 28%), linear-gradient(180deg, #08173d 0%, #050b25 58%, #020617 100%)",
+      glow: "rgba(100, 91, 255, 0.34)",
+      accent: "#8f7bff",
+    },
     moral: "La lumière peut être petite, mais elle suffit quand on n’est pas seul.",
     pages: [
-      {
-        id: "fear-cover",
-        type: "cover",
-        title: "La nuit devient moins grande",
-        image: heroBookLeo,
-      },
       {
         id: "fear-1",
         type: "story",
@@ -34,7 +34,6 @@ export const exampleBooks = [
         pageNumber: 2,
         title: "Le poulpe lumineux",
         text: "Sous la couverture, une petite lumière apparut. C’était un poulpe doux, rond et silencieux, venu aider Léo à regarder la nuit autrement.",
-        imagePrompt: "Petit garçon et poulpe lumineux dans une chambre douce, ambiance nuit étoilée.",
       },
       {
         id: "fear-3",
@@ -65,14 +64,14 @@ export const exampleBooks = [
     theme: "Rentrée",
     tone: "Confiant",
     coverImage: bookMaelys,
+    readerTheme: {
+      background:
+        "radial-gradient(circle at 72% 20%, rgba(255, 190, 92, 0.22), transparent 30%), radial-gradient(circle at 22% 32%, rgba(104, 147, 92, 0.24), transparent 32%), linear-gradient(180deg, #182a35 0%, #0e1a24 58%, #070d16 100%)",
+      glow: "rgba(255, 193, 92, 0.28)",
+      accent: "#f4b84f",
+    },
     moral: "Un grand début peut se faire avec un petit pas.",
     pages: [
-      {
-        id: "school-cover",
-        type: "cover",
-        title: "Le cartable courageux",
-        image: bookMaelys,
-      },
       {
         id: "school-1",
         type: "story",
@@ -87,7 +86,6 @@ export const exampleBooks = [
         pageNumber: 2,
         title: "Le secret dans la poche",
         text: "Dans sa poche, Maëlys garda une phrase secrète : je peux entrer à mon rythme. Son cartable la connaissait déjà par cœur.",
-        imagePrompt: "Petite fille à la rentrée avec cartable, lumière chaude, cour d’école rassurante.",
       },
       {
         id: "school-3",
@@ -118,14 +116,14 @@ export const exampleBooks = [
     theme: "Colère",
     tone: "Apaisant",
     coverImage: bookNoah,
+    readerTheme: {
+      background:
+        "radial-gradient(circle at 70% 22%, rgba(255, 101, 87, 0.24), transparent 30%), radial-gradient(circle at 20% 30%, rgba(91, 72, 204, 0.24), transparent 30%), linear-gradient(180deg, #171633 0%, #080b24 58%, #030512 100%)",
+      glow: "rgba(255, 98, 87, 0.30)",
+      accent: "#ff6257",
+    },
     moral: "Une émotion devient plus légère quand on apprend à la tenir.",
     pages: [
-      {
-        id: "anger-cover",
-        type: "cover",
-        title: "La colère en ballon",
-        image: bookNoah,
-      },
       {
         id: "anger-1",
         type: "story",
@@ -140,7 +138,6 @@ export const exampleBooks = [
         pageNumber: 2,
         title: "Regarder sans tirer",
         text: "Mila ne tira pas sur le ballon. Elle s’assit près de Noah et lui demanda seulement : est-ce qu’on peut le regarder ensemble ?",
-        imagePrompt: "Petit garçon avec ballon rouge symbolique, adulte rassurant, ambiance douce.",
       },
       {
         id: "anger-3",
