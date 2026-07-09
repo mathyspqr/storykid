@@ -29,7 +29,7 @@ export function FinalCTA() {
             </p>
             <Link
               href="/create-story"
-              className="mt-6 inline-flex h-[52px] w-full max-w-[430px] items-center justify-center rounded-xl bg-[#ff6257] px-8 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.28)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
+              className="mt-6 inline-flex h-[54px] w-full max-w-[460px] items-center justify-center rounded-xl bg-[#ff6257] px-9 text-sm font-extrabold text-white shadow-[0_18px_42px_rgba(255,98,87,0.34)] transition hover:-translate-y-0.5 hover:bg-[#f2554a] hover:shadow-[0_22px_52px_rgba(255,98,87,0.42)]"
             >
               Créer mon aperçu gratuit
             </Link>

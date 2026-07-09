@@ -9,7 +9,6 @@ import {
   Sparkles,
   Star,
   WandSparkles,
-  X,
 } from "lucide-react";
 import avatarCamille from "@/assets/cleaned/avatar-camille-clean.png";
 import avatarSofia from "@/assets/cleaned/avatar-sofia-clean.png";
@@ -52,7 +51,7 @@ const inputs = [
 const productBenefits = [
   {
     title: "Une couverture qui lui ressemble",
-    text: "Son prénom, son moment et une ambiance illustrée qui donnent envie d’ouvrir le livre.",
+    text: "Son prénom, son moment et une ambiance illustrée pour qu’il ait envie d’ouvrir le livre.",
     visual: "cover",
   },
   {
@@ -80,8 +79,7 @@ const plans = [
     price: "0 €",
     period: "pour essayer",
     description: "Pour voir le rendu sans compte et sans risque.",
-    features: ["Premier rendu visible", "Sans compte", "Sans carte bancaire"],
-    missingFeatures: ["Histoire complète", "8 à 12 pages", "Audio doux"],
+    features: ["Premier rendu visible", "Sans compte", "Sans carte bancaire", "Aperçu modifiable"],
     cta: "Créer un aperçu",
     featured: false,
   },
@@ -89,9 +87,8 @@ const plans = [
     name: "Livre digital",
     price: "4,99 €",
     period: "une fois",
-    description: "Le meilleur premier achat : simple, immédiat, facile à garder.",
+    description: "Le livre complet à garder, relire ou imprimer.",
     features: ["Histoire complète", "8 à 12 pages", "Couverture illustrée", "PDF à garder"],
-    missingFeatures: [],
     cta: "Débloquer le livre",
     featured: true,
   },
@@ -101,14 +98,13 @@ const plans = [
     period: "une fois",
     description: "Pour lire ensemble ou écouter l’histoire au moment du coucher.",
     features: ["Tout le livre digital", "Audio narré", "PDF + MP3", "À relire le soir"],
-    missingFeatures: [],
-    cta: "Choisir livre + audio",
+    cta: "Choisir avec audio",
     featured: false,
   },
 ];
 
 const subscriptionPlan = {
-  label: "Pour créer souvent",
+  label: "Pour les familles régulières",
   name: "Abonnement parent",
   price: "6,99 €",
   period: "/mois",
@@ -201,12 +197,12 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-9 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
           <h1 className="max-w-[560px] text-[2.8rem] font-extrabold leading-[1.02] tracking-[-0.065em] text-[#070b2d] sm:text-[4.05rem]">
-            Crée une histoire du soir où ton enfant devient le héros.
+            Ton enfant devient le héros de son histoire du soir.
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
           <p className="mt-5 max-w-[500px] text-lg leading-8 text-[#4c5578]">
-            Choisis un moment, ajoute quelques détails sur ton enfant, et découvre
-            un mini-livre illustré prêt à lire ce soir.
+            Choisis un moment, ajoute quelques détails, et découvre un mini-livre
+            illustré prêt à lire ce soir.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -273,7 +269,7 @@ function TestimonialsStrip() {
         ))}
       </div>
       <p className="mt-5 text-center text-sm font-semibold text-[#7a8199]">
-        Déjà 800+ aperçus créés par des parents curieux.
+        Déjà 800+ aperçus créés avant même de payer.
       </p>
     </section>
   );
@@ -283,8 +279,8 @@ function InputOutputPanel() {
   const book = landingBookExamples[0];
 
   return (
-    <section id="fonctionnement" className="py-12 md:py-16 lg:py-24">
-      <div className="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+    <section id="fonctionnement" className="py-10 md:py-14 lg:py-20">
+      <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
         <div>
           <SectionKicker>Fonctionnement</SectionKicker>
           <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-4xl">
@@ -297,7 +293,7 @@ function InputOutputPanel() {
         </div>
       </div>
 
-      <div className="grid items-center gap-5 lg:grid-cols-[1.12fr_84px_1fr]">
+      <div className="grid items-center gap-4 lg:grid-cols-[1.12fr_72px_1fr]">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {inputs.map((item) => {
             const Icon = item.icon;
@@ -318,8 +314,8 @@ function InputOutputPanel() {
         </div>
         <div className="flex items-center justify-center gap-4 text-[#98a0b8] lg:gap-0">
           <span className="hidden h-px flex-1 border-t border-dashed border-[#c7cbd8] lg:block" />
-          <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[#20145f] text-white shadow-[0_16px_36px_rgba(32,20,95,0.26)]">
-            <WandSparkles className="h-7 w-7" />
+          <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#20145f] text-white shadow-[0_16px_36px_rgba(32,20,95,0.26)]">
+            <WandSparkles className="h-6 w-6" />
           </span>
           <span className="hidden h-px flex-1 border-t border-dashed border-[#c7cbd8] lg:block" />
         </div>
@@ -338,7 +334,7 @@ function InputOutputPanel() {
           </div>
         </div>
       </div>
-      <div className="mt-6 grid gap-3 md:grid-cols-4">
+      <div className="mt-5 grid gap-3 md:grid-cols-4">
         {howSteps.map(([number, title, text]) => (
           <div key={number} className="flex gap-3 rounded-2xl bg-white/60 p-3">
             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#f0edff] text-xs font-extrabold text-[#6b55ef]">
@@ -454,12 +450,6 @@ function PricingSection() {
                   {feature}
                 </p>
               ))}
-              {plan.missingFeatures.map((feature) => (
-                <p key={feature} className="flex items-center gap-2 text-sm font-semibold text-[#a4a9b8]">
-                  <X className="h-4 w-4 shrink-0 text-[#c2c6d3]" />
-                  <span className="line-through decoration-[#b4b8c6] decoration-2">{feature}</span>
-                </p>
-              ))}
             </div>
             <Link
               href={plan.featured ? "/pricing" : plan.name === "Aperçu" ? "/create-story" : "/pricing"}
@@ -508,7 +498,7 @@ function PricingSection() {
             href="/pricing"
             className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-xl border border-[#c9c3ff] bg-white text-sm font-extrabold text-[#6b55ef] transition hover:border-[#6b55ef] hover:bg-[#f2efff]"
           >
-            Voir l’abonnement
+            Découvrir le forfait
           </Link>
         </div>
       </div>
@@ -518,7 +508,7 @@ function PricingSection() {
 
 function FAQPanel() {
   return (
-    <section className="py-12 md:py-16 lg:py-20">
+    <section className="pb-8 pt-12 md:pb-10 md:pt-16 lg:pb-12 lg:pt-20">
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <SectionKicker>FAQ</SectionKicker>
@@ -526,7 +516,7 @@ function FAQPanel() {
             Questions <EditorialAccent>fréquentes</EditorialAccent>
           </h2>
           <p className="mt-2 text-sm font-semibold text-[#626b89]">
-            Les réponses importantes avant de créer un premier aperçu.
+            Tout ce qu’il faut savoir avant de créer ton premier aperçu.
           </p>
         </div>
         <div className="space-y-3">

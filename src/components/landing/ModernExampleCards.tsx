@@ -82,7 +82,7 @@ export function ModernExampleCards() {
                 {book.theme} · {book.child}
               </p>
               <span className="mt-5 inline-flex h-9 w-fit items-center justify-center rounded-lg border border-[#c7cad8] bg-white px-4 text-xs font-extrabold text-[#070b2d]">
-                Ouvrir l'exemple
+                Lire l'exemple
               </span>
             </div>
           </button>
