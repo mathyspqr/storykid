@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { StoryBookPage } from "@/components/book/StoryBookPage";
 import type { StoryBook, StoryBookPage as StoryBookPageType } from "@/types/book";
 
@@ -21,20 +21,36 @@ export function StoryBookOpenView({ book }: { book: StoryBook }) {
     }
     return result;
   }, [book.pages]);
-  const [leftPage, rightPage] = spreads[spreadIndex] ?? [];
+  const displaySpreadIndex = pageTurn
+    ? pageTurn.direction === "next"
+      ? Math.min(spreads.length - 1, spreadIndex + 1)
+      : Math.max(0, spreadIndex - 1)
+    : spreadIndex;
+  const [leftPage, rightPage] = spreads[displaySpreadIndex] ?? [];
+  const [currentLeftPage, currentRightPage] = spreads[spreadIndex] ?? [];
   const canGoBack = spreadIndex > 0;
   const canGoNext = spreadIndex < spreads.length - 1;
   const isTurning = Boolean(pageTurn);
 
-  const startTurn = (direction: "next" | "prev") => {
+  const startTurn = useCallback((direction: "next" | "prev") => {
     if (isTurning) return;
-    if (direction === "next" && canGoNext && rightPage) {
-      setPageTurn({ direction, page: rightPage });
+    if (direction === "next" && canGoNext && currentRightPage) {
+      setPageTurn({ direction, page: currentRightPage });
     }
-    if (direction === "prev" && canGoBack && leftPage) {
-      setPageTurn({ direction, page: leftPage });
+    if (direction === "prev" && canGoBack && currentLeftPage) {
+      setPageTurn({ direction, page: currentLeftPage });
     }
-  };
+  }, [canGoBack, canGoNext, currentLeftPage, currentRightPage, isTurning]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      if (event.key === "ArrowRight") startTurn("next");
+      if (event.key === "ArrowLeft") startTurn("prev");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [startTurn]);
 
   const completeTurn = () => {
     if (!pageTurn) return;

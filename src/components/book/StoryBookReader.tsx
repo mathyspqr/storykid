@@ -2,12 +2,14 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { StoryBookCoverView } from "@/components/book/StoryBookCoverView";
 import { StoryBookMobileReader } from "@/components/book/StoryBookMobileReader";
 import { StoryBookOpenView } from "@/components/book/StoryBookOpenView";
 import type { BookReaderMode, StoryBook } from "@/types/book";
+
+export type ReaderStage = "preview" | "opening" | "reading";
 
 const defaultReaderTheme = {
   background:
@@ -28,8 +30,8 @@ export function StoryBookReader({
   onClose: () => void;
 }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [isBookOpen, setIsBookOpen] = useState(false);
-  const [isOpening, setIsOpening] = useState(false);
+  const [stage, setStage] = useState<ReaderStage>("preview");
+  const openingTimerRef = useRef<number | null>(null);
   const theme = book?.readerTheme ?? defaultReaderTheme;
 
   useEffect(() => {
@@ -38,10 +40,15 @@ export function StoryBookReader({
 
   useEffect(() => {
     if (open) {
-      setIsBookOpen(false);
-      setIsOpening(false);
+      setStage("preview");
     }
   }, [book?.id, open]);
+
+  useEffect(() => {
+    return () => {
+      if (openingTimerRef.current) window.clearTimeout(openingTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -64,12 +71,12 @@ export function StoryBookReader({
   if (!isMounted) return null;
 
   const openBook = () => {
-    if (isOpening || isBookOpen) return;
-    setIsOpening(true);
-    window.setTimeout(() => {
-      setIsBookOpen(true);
-      setIsOpening(false);
-    }, 880);
+    if (stage !== "preview") return;
+    setStage("opening");
+    if (openingTimerRef.current) window.clearTimeout(openingTimerRef.current);
+    openingTimerRef.current = window.setTimeout(() => {
+      setStage("reading");
+    }, 980);
   };
 
   return createPortal(
@@ -113,12 +120,12 @@ export function StoryBookReader({
 
             <div className="relative min-h-0 flex-1">
               <AnimatePresence mode="wait">
-                {!isBookOpen ? (
+                {stage !== "reading" ? (
                   <StoryBookCoverView
                     key="cover"
                     book={book}
                     onOpen={openBook}
-                    isOpening={isOpening}
+                    stage={stage}
                     accent={theme.accent}
                     glow={theme.glow}
                   />

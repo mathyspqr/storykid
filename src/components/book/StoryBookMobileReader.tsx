@@ -14,15 +14,21 @@ type MobilePageTurn = {
 export function StoryBookMobileReader({ book }: { book: StoryBook }) {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageTurn, setPageTurn] = useState<MobilePageTurn | null>(null);
-  const page = book.pages[pageIndex];
+  const displayPageIndex = pageTurn
+    ? pageTurn.direction === "next"
+      ? Math.min(book.pages.length - 1, pageIndex + 1)
+      : Math.max(0, pageIndex - 1)
+    : pageIndex;
+  const page = book.pages[displayPageIndex];
+  const currentPage = book.pages[pageIndex];
   const isFirst = pageIndex === 0;
   const isLast = pageIndex === book.pages.length - 1;
   const isTurning = Boolean(pageTurn);
 
   const startTurn = (direction: "next" | "prev") => {
     if (isTurning) return;
-    if (direction === "next" && !isLast) setPageTurn({ direction, page });
-    if (direction === "prev" && !isFirst) setPageTurn({ direction, page });
+    if (direction === "next" && !isLast) setPageTurn({ direction, page: currentPage });
+    if (direction === "prev" && !isFirst) setPageTurn({ direction, page: currentPage });
   };
 
   const completeTurn = () => {
