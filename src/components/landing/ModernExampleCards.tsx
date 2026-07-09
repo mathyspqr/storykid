@@ -40,7 +40,7 @@ export function ModernExampleCards() {
             Exemples
           </p>
           <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-[2.65rem] md:leading-tight">
-            Des histoires pour les moments qui comptent.
+            Des histoires pour les petits moments qui comptent.
           </h2>
           <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-[#626b89]">
             Chaque livre part d'une situation réelle : une peur, une rentrée,

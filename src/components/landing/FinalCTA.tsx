@@ -8,10 +8,10 @@ const micro = ["Sans compte", "Sans carte bancaire", "Aperçu en ligne immédiat
 export function FinalCTA() {
   return (
     <section className="px-5 pb-5 pt-4 sm:px-6 sm:pt-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[24px] bg-[#07123a] px-5 py-9 text-center text-white shadow-[0_28px_90px_rgba(7,18,58,0.25)] sm:px-12 md:rounded-[28px] md:py-11 md:text-left lg:px-16">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_19%_24%,rgba(124,92,255,0.38),transparent_24%),radial-gradient(circle_at_80%_18%,rgba(255,255,255,0.12),transparent_22%),linear-gradient(135deg,#07123a_0%,#091946_48%,#050b25_100%)] px-5 py-9 text-center text-white shadow-[0_28px_90px_rgba(7,18,58,0.25)] sm:px-12 md:rounded-[28px] md:py-11 md:text-left lg:px-16">
         <div className="relative grid min-h-[220px] gap-6 md:grid-cols-[350px_1fr] md:items-center md:gap-8">
-          <div className="absolute inset-0 opacity-85 [background-image:radial-gradient(circle_at_14%_18%,rgba(255,255,255,0.55)_1px,transparent_2px),radial-gradient(circle_at_80%_22%,rgba(255,255,255,0.5)_1px,transparent_2px),radial-gradient(circle_at_68%_72%,rgba(255,255,255,0.36)_1px,transparent_2px),radial-gradient(circle_at_40%_40%,rgba(124,92,255,0.35),transparent_22%)]" />
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(1,6,27,0.6))]" />
+          <div className="absolute inset-0 opacity-80 [background-image:radial-gradient(circle_at_14%_18%,rgba(255,255,255,0.58)_1px,transparent_2px),radial-gradient(circle_at_80%_22%,rgba(255,255,255,0.5)_1px,transparent_2px),radial-gradient(circle_at_68%_72%,rgba(255,255,255,0.36)_1px,transparent_2px),radial-gradient(circle_at_38%_42%,rgba(124,92,255,0.22),transparent_28%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(4,10,35,0.26))]" />
           <div className="relative flex h-full items-center justify-center md:flex">
             <Image
               src={logoCrystal}

@@ -108,10 +108,9 @@ const subscriptionPlan = {
   name: "Abonnement parent",
   price: "6,99 €",
   period: "/mois",
-  description:
-    "4 nouvelles histoires chaque mois pour les petits moments qui reviennent : peurs, émotions, progrès, anniversaires.",
+  description: "4 histoires par mois pour accompagner les petits moments qui reviennent.",
   features: [
-    "4 livres digitaux / mois",
+    "4 livres digitaux",
     "2 audios inclus",
     "Bibliothèque familiale",
     "Sans engagement",
@@ -138,7 +137,7 @@ const faqs = [
   {
     question: "Est-ce vraiment personnalisé ?",
     answer:
-      "Oui. L’histoire reprend le prénom, l’âge, le moment choisi, les détails donnés et le ton sélectionné. Tu vois un aperçu avant de payer.",
+      "Oui. L’histoire reprend le prénom, l’âge, le moment choisi, les détails donnés et le ton sélectionné. StoryKid est pensé pour les enfants de 3 à 9 ans.",
   },
   {
     question: "Dois-je ajouter une photo ?",
@@ -197,7 +196,7 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-9">
         <div>
           <h1 className="max-w-[630px] text-[2.12rem] font-extrabold leading-[1.04] tracking-[-0.055em] text-[#070b2d] min-[390px]:text-[2.32rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
-            Mini-livres personnalisés
+            Un mini-livre personnalisé
             <span className="block">pour les petits moments de l’enfance.</span>
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
@@ -229,9 +228,6 @@ function Hero() {
               </span>
             ))}
           </div>
-          <p className="mt-3 hidden max-w-[430px] text-xs font-bold leading-5 text-[#8a91a6] sm:block">
-            Pour les parents d’enfants de 3 à 9 ans.
-          </p>
         </div>
         <StoryKidAppMockup />
       </div>
@@ -272,9 +268,11 @@ function TestimonialsStrip() {
           </article>
         ))}
       </div>
-      <p className="mt-5 text-center text-sm font-semibold text-[#7a8199]">
-        Déjà 800+ aperçus créés avant même de payer.
-      </p>
+      <div className="mt-5 flex justify-center">
+        <p className="rounded-full border border-[#e7e4ff] bg-white/76 px-4 py-2 text-center text-xs font-extrabold text-[#6b55ef] shadow-[0_10px_26px_rgba(15,23,42,0.04)]">
+          800+ aperçus créés · paiement seulement si le rendu plaît
+        </p>
+      </div>
     </section>
   );
 }
@@ -291,8 +289,8 @@ function InputOutputPanel() {
             De 5 détails à une <EditorialAccent>vraie histoire.</EditorialAccent>
           </h2>
           <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[#626b89]">
-            Choisis le moment, ajoute quelques détails, et StoryKid transforme
-            tout ça en une histoire douce autour de ton enfant.
+            Choisis le moment, ajoute quelques détails, et StoryKid crée une
+            histoire douce autour de ton enfant.
           </p>
         </div>
       </div>
@@ -472,27 +470,26 @@ function PricingSection() {
         ))}
       </div>
 
-      <div className="mt-7 rounded-[26px] border border-[#d8d2ff] bg-[#f7f4ff]/75 p-5 shadow-[0_16px_42px_rgba(91,71,210,0.07)] md:grid md:grid-cols-[1.1fr_1fr_auto] md:items-center md:gap-6 md:p-6">
-        <div>
+      <div className="mx-auto mt-7 max-w-[860px] rounded-[24px] border border-[#d8d2ff] bg-[#f8f6ff]/82 p-5 shadow-[0_16px_38px_rgba(91,71,210,0.06)] md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-7 md:p-6">
+        <div className="min-w-0">
           <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#6b55ef]">{subscriptionPlan.label}</p>
-          <h3 className="mt-2 text-2xl font-extrabold tracking-[-0.045em] text-[#070b2d]">
+          <h3 className="mt-2 text-[1.65rem] font-extrabold tracking-[-0.045em] text-[#070b2d]">
             {subscriptionPlan.name}
           </h3>
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-6 text-[#626b89]">
+          <p className="mt-2 max-w-lg text-sm font-semibold leading-6 text-[#626b89]">
             {subscriptionPlan.description}
           </p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {subscriptionPlan.features.map((feature) => (
+              <p key={feature} className="flex items-center gap-2 text-sm font-semibold text-[#3f4968]">
+                <Check className="h-4 w-4 shrink-0 text-[#6b55ef]" />
+                {feature}
+              </p>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-5 grid gap-2 sm:grid-cols-2 md:mt-0">
-          {subscriptionPlan.features.map((feature) => (
-            <p key={feature} className="flex items-center gap-2 text-sm font-semibold text-[#3f4968]">
-              <Check className="h-4 w-4 shrink-0 text-[#6b55ef]" />
-              {feature}
-            </p>
-          ))}
-        </div>
-
-        <div className="mt-5 rounded-2xl bg-white p-4 text-left shadow-[0_12px_30px_rgba(91,71,210,0.08)] md:mt-0 md:min-w-[188px]">
+        <div className="mt-5 rounded-2xl bg-white/88 p-4 text-left shadow-[0_12px_28px_rgba(91,71,210,0.07)] ring-1 ring-[#ebe8ff] md:mt-0 md:min-w-[184px]">
           <div className="flex items-end gap-1">
             <p className="text-4xl font-extrabold tracking-[-0.065em] text-[#070b2d]">
               {subscriptionPlan.price}
@@ -503,7 +500,7 @@ function PricingSection() {
           </div>
           <Link
             href="/pricing"
-            className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-xl border border-[#c9c3ff] bg-white text-sm font-extrabold text-[#6b55ef] transition hover:border-[#6b55ef] hover:bg-[#f2efff]"
+            className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-xl border border-[#c9c3ff] bg-[#fbfaff] text-sm font-extrabold text-[#6b55ef] transition hover:border-[#6b55ef] hover:bg-[#f2efff]"
           >
             Découvrir le forfait
           </Link>
