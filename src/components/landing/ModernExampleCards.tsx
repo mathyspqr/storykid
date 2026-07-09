@@ -2,17 +2,15 @@
 
 import { useState, type CSSProperties } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
-import {
-  KeepsakeStrip,
-  PremiumBookCover,
-  PremiumBookSpread,
-} from "@/components/landing/BookProductMockup";
-import { landingBookExamples, type LandingBookExample } from "@/data/landing-examples";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { BookReaderModal } from "@/components/book/BookReaderModal";
+import { PremiumBookCover } from "@/components/landing/BookProductMockup";
+import { exampleBookById } from "@/data/example-books";
+import { landingBookExamples } from "@/data/landing-examples";
+import type { StoryBook } from "@/types/book";
 
 export function ModernExampleCards() {
-  const [selected, setSelected] = useState<LandingBookExample | null>(null);
+  const [selected, setSelected] = useState<StoryBook | null>(null);
 
   return (
     <section
@@ -68,7 +66,7 @@ export function ModernExampleCards() {
           <button
             key={book.id}
             type="button"
-            onClick={() => setSelected(book)}
+            onClick={() => setSelected(exampleBookById[book.id])}
             className="group grid h-full min-h-[184px] cursor-pointer grid-cols-[126px_1fr] gap-3 rounded-[24px] border border-[#e9ebf4] bg-white p-3 text-left shadow-[0_18px_48px_rgba(15,23,42,0.055)] transition hover:-translate-y-1 hover:border-[#cfd3e1] hover:shadow-[0_24px_68px_rgba(15,23,42,0.09)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff6257] min-[400px]:grid-cols-[140px_1fr] md:grid-cols-[148px_1fr] md:gap-4 lg:min-h-[194px]"
             style={
               {
@@ -96,77 +94,12 @@ export function ModernExampleCards() {
         ))}
       </div>
 
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            className="fixed inset-0 z-50 grid place-items-center bg-[#070b2d]/48 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelected(null)}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-label={`Exemple ${selected.title}`}
-              initial={{ opacity: 0, y: 24, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: 0.22 }}
-              onClick={(event) => event.stopPropagation()}
-              className="relative max-h-[92vh] w-full max-w-6xl overflow-auto rounded-[32px] bg-white p-4 shadow-[0_34px_110px_rgba(0,0,0,0.28)]"
-            >
-              <button
-                type="button"
-                onClick={() => setSelected(null)}
-                aria-label="Fermer l'exemple"
-                className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-2xl bg-white text-[#070b2d] shadow-sm ring-1 ring-[#e4e6ef] transition hover:bg-[#fbfbff]"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div
-                className="grid gap-5 md:grid-cols-[0.85fr_1.35fr]"
-                style={{ "--book-wash": selected.palette.wash } as CSSProperties}
-              >
-                <div className="rounded-[28px] bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.9),transparent_28%),linear-gradient(150deg,var(--book-wash),#fff)] p-6">
-                  <PremiumBookCover book={selected} size="modal" />
-                  <div className="mt-8">
-                    <KeepsakeStrip book={selected} />
-                  </div>
-                </div>
-
-                <div className="p-2 md:p-7">
-                  <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#6b55ef]">
-                    {selected.theme}
-                  </p>
-                  <h3 className="mt-3 text-4xl font-extrabold leading-[0.98] tracking-[-0.055em] text-[#070b2d] md:text-5xl">
-                    {selected.title}
-                  </h3>
-                  <p className="mt-2 text-base font-semibold text-[#626b89]">
-                    {selected.child} · {selected.tag}
-                  </p>
-                  <p className="mt-5 max-w-2xl text-lg leading-8 text-[#4c5578]">
-                    {selected.promise}
-                  </p>
-
-                  <div className="mt-7">
-                    <PremiumBookSpread book={selected} />
-                  </div>
-
-                  <Link
-                    href="/create-story"
-                    className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#ff6257] px-5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.22)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
-                  >
-                    Créer un aperçu similaire
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <BookReaderModal
+        book={selected}
+        mode="example"
+        open={Boolean(selected)}
+        onClose={() => setSelected(null)}
+      />
     </section>
   );
 }
