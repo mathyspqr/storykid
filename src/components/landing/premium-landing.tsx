@@ -87,7 +87,7 @@ const plans = [
     name: "Livre digital",
     price: "4,99 €",
     period: "une fois",
-    description: "Le livre complet à garder, relire ou imprimer.",
+    description: "Le mini-livre complet à lire en ligne, relire le soir et garder en PDF.",
     features: ["Histoire complète", "8 à 12 pages", "Couverture illustrée", "Lecture en ligne + PDF"],
     cta: "Débloquer le livre",
     featured: true,
@@ -196,14 +196,14 @@ function Hero() {
     <section className="relative bg-[radial-gradient(circle_at_82%_42%,rgba(124,92,255,0.12),transparent_26%),linear-gradient(180deg,#ffffff_0%,#fbfbff_100%)] px-5 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-9">
         <div>
-          <h1 className="max-w-[590px] text-[2.34rem] font-extrabold leading-[1.03] tracking-[-0.058em] text-[#070b2d] min-[390px]:text-[2.55rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
-            Ton enfant devient le héros
-            <span className="block">de son histoire du soir.</span>
+          <h1 className="max-w-[630px] text-[2.12rem] font-extrabold leading-[1.04] tracking-[-0.055em] text-[#070b2d] min-[390px]:text-[2.32rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
+            Mini-livres personnalisés
+            <span className="block">pour les petits moments de l’enfance.</span>
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
           <p className="mt-4 max-w-[500px] text-base font-semibold leading-7 text-[#4c5578] sm:mt-5 sm:text-lg sm:font-normal sm:leading-8">
-            Peur du noir, rentrée, colère ou confiance : transforme quelques
-            détails en un mini-livre personnalisé à lire en ligne ce soir.
+            Peur du noir, rentrée, colère ou confiance : crée une histoire douce
+            où ton enfant devient le héros, à lire en ligne ce soir.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -230,7 +230,7 @@ function Hero() {
             ))}
           </div>
           <p className="mt-3 hidden max-w-[430px] text-xs font-bold leading-5 text-[#8a91a6] sm:block">
-            Pensé pour les parents d’enfants de 3 à 9 ans.
+            Pour les parents d’enfants de 3 à 9 ans.
           </p>
         </div>
         <StoryKidAppMockup />
@@ -291,8 +291,8 @@ function InputOutputPanel() {
             De 5 détails à une <EditorialAccent>vraie histoire.</EditorialAccent>
           </h2>
           <p className="mt-2 max-w-2xl text-base font-semibold leading-7 text-[#626b89]">
-            Tu ajoutes quelques détails simples. StoryKid en fait une histoire
-            courte, douce et illustrée autour de ton enfant.
+            Choisis le moment, ajoute quelques détails, et StoryKid transforme
+            tout ça en une histoire douce autour de ton enfant.
           </p>
         </div>
       </div>
@@ -421,6 +421,9 @@ function PricingSection() {
         <p className="mt-3 text-base font-semibold leading-7 text-[#626b89]">
           L’aperçu est gratuit et sans carte bancaire. Tu débloques le livre complet
           seulement si le rendu te plaît.
+        </p>
+        <p className="mt-2 text-sm font-extrabold text-[#6b55ef]">
+          Tu lis l’aperçu avant de payer.
         </p>
       </div>
 
