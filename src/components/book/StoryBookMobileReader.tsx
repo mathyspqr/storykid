@@ -50,8 +50,8 @@ export function StoryBookMobileReader({
   return (
     <motion.div
       key="open-mobile"
-      initial={{ opacity: 0, y: 24, scale: 0.97, filter: "blur(8px)" }}
-      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 18, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
       className="flex h-full flex-col justify-center px-4 py-4 lg:hidden"
@@ -92,7 +92,7 @@ export function StoryBookMobileReader({
             style={{ backgroundImage: `url(${bookAsset("book-inner-page-right.png")})` }}
           />
           <div
-            className="absolute inset-0 opacity-[0.18] mix-blend-multiply"
+            className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
             style={{ backgroundImage: `url(${bookAsset("book-paper-texture.png")})`, backgroundSize: "240px 240px" }}
           />
           <StoryBookPage
@@ -105,17 +105,17 @@ export function StoryBookMobileReader({
           {pageTurn && (
             <motion.div
               className="pointer-events-none absolute inset-0 z-20 origin-left"
-              initial={{ opacity: 0.95, x: 0, rotateY: 0 }}
+              initial={{ opacity: 0.26, x: 0, rotateY: 0 }}
               animate={{
-                opacity: [0.95, 1, 0],
-                x: pageTurn.direction === "next" ? [-4, -34, -62] : [4, 34, 62],
-                rotateY: pageTurn.direction === "next" ? [0, -14, -26] : [0, 14, 26],
+                opacity: [0.26, 0.34, 0],
+                x: pageTurn.direction === "next" ? [-2, -24, -46] : [2, 24, 46],
+                rotateY: pageTurn.direction === "next" ? [0, -8, -16] : [0, 8, 16],
               }}
-              transition={{ duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onAnimationComplete={completeTurn}
             >
               <div
-                className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat drop-shadow-[0_16px_30px_rgba(0,0,0,0.18)]"
+                className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat drop-shadow-[0_10px_20px_rgba(0,0,0,0.10)]"
                 style={{ backgroundImage: `url(${bookAsset("book-page-turn-overlay.png")})` }}
               />
             </motion.div>

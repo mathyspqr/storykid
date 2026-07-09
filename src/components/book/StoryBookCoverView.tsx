@@ -32,11 +32,11 @@ export function StoryBookCoverView({
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="mx-auto grid h-full max-h-[780px] w-full max-w-6xl items-center gap-5 px-4 py-3 sm:gap-8 sm:py-9 lg:grid-cols-[0.96fr_1fr] lg:gap-14 lg:px-10"
     >
-      <div className="relative mx-auto w-full max-w-[265px] sm:max-w-[420px] lg:max-w-[500px]">
+      <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[390px] lg:max-w-[450px]">
         <motion.div
           aria-hidden
           className="pointer-events-none absolute -inset-x-20 -inset-y-14"
-          animate={{ opacity: isTransitioning ? 0.95 : 0.58, scale: isTransitioning ? 1.08 : 1 }}
+          animate={{ opacity: isTransitioning ? 0.7 : 0.42, scale: isTransitioning ? 1.04 : 1 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           <div
@@ -57,30 +57,30 @@ export function StoryBookCoverView({
           initial={{ rotateZ: -1.2 }}
           animate={
             isTransitioning
-              ? { y: -8, scale: 1.045, rotateZ: 0, opacity: 0.16, filter: "blur(6px)" }
+              ? { y: -6, scale: 1.035, rotateZ: 0, opacity: 0, filter: "blur(1px)" }
               : { y: [0, -8, 0], scale: 1, rotateZ: [-1.2, 0.7, -1.2], opacity: 1, filter: "blur(0px)" }
           }
           whileHover={isTransitioning ? undefined : { scale: 1.015 }}
           whileTap={isTransitioning ? undefined : { scale: 0.992 }}
           transition={
             isTransitioning
-              ? { duration: 0.56, ease: [0.22, 1, 0.36, 1] }
+              ? { duration: 0.42, ease: [0.22, 1, 0.36, 1] }
               : { duration: 6.2, repeat: Infinity, ease: "easeInOut" }
           }
         >
           <span
-            className="pointer-events-none absolute -bottom-[9%] left-[4%] z-0 h-[28%] w-[96%] bg-contain bg-center bg-no-repeat opacity-75 blur-[1px]"
+            className="pointer-events-none absolute -bottom-[7%] left-[7%] z-0 h-[22%] w-[86%] bg-contain bg-center bg-no-repeat opacity-55 blur-[1px]"
             style={{ backgroundImage: `url(${bookAsset("book-cover-shadow.png")})` }}
           />
           <span
-            className="pointer-events-none absolute right-[-7%] top-[8%] z-10 h-[82%] w-[22%] bg-contain bg-right bg-no-repeat opacity-95"
+            className="pointer-events-none absolute right-[-24px] top-[7%] z-10 h-[86%] w-[30px] bg-[length:100%_100%] bg-right bg-no-repeat opacity-70"
             style={{ backgroundImage: `url(${bookAsset("book-page-stack-right.png")})` }}
           />
           <span
-            className="pointer-events-none absolute left-[-5%] top-[8%] z-30 h-[82%] w-[16%] bg-contain bg-left bg-no-repeat opacity-95"
+            className="pointer-events-none absolute left-[-12px] top-[7%] z-10 h-[86%] w-[18px] bg-[length:100%_100%] bg-left bg-no-repeat opacity-45"
             style={{ backgroundImage: `url(${bookAsset("book-spine.png")})` }}
           />
-          <div className="relative z-20 overflow-hidden rounded-[18px] shadow-[24px_34px_78px_rgba(0,0,0,0.42)] ring-1 ring-white/14 transition duration-500 group-hover:shadow-[30px_42px_92px_rgba(0,0,0,0.50)]">
+          <div className="relative z-30 overflow-hidden rounded-[16px] shadow-[18px_28px_58px_rgba(0,0,0,0.36)] transition duration-500 group-hover:shadow-[22px_34px_70px_rgba(0,0,0,0.42)]">
             {book.coverImage && (
               <Image
                 src={book.coverImage}
@@ -90,23 +90,23 @@ export function StoryBookCoverView({
                 className="h-auto w-full object-contain"
               />
             )}
-            <span className="pointer-events-none absolute inset-y-0 left-0 w-[12%] bg-[linear-gradient(90deg,rgba(0,0,0,0.36),rgba(0,0,0,0.05),transparent)]" />
-            <span className="pointer-events-none absolute inset-0 rounded-[18px] opacity-0 transition duration-500 group-hover:opacity-100" style={{ boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.20), 0 0 74px ${glow}` }} />
+            <span className="pointer-events-none absolute inset-y-0 left-0 w-[8%] bg-[linear-gradient(90deg,rgba(0,0,0,0.24),rgba(0,0,0,0.04),transparent)]" />
+            <span className="pointer-events-none absolute inset-0 rounded-[16px] opacity-0 transition duration-500 group-hover:opacity-100" style={{ boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.14), 0 0 48px ${glow}` }} />
           </div>
         </motion.button>
 
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute inset-x-[-42%] top-1/2 z-40 hidden aspect-[1520/980] -translate-y-1/2 sm:block"
-          initial={{ opacity: 0, scale: 0.92, filter: "blur(10px)" }}
+          className="pointer-events-none absolute inset-x-[-28%] top-1/2 z-20 hidden aspect-[1520/980] -translate-y-1/2 sm:block"
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={
             isTransitioning
-              ? { opacity: 1, scale: 1, filter: "blur(0px)" }
-              : { opacity: 0, scale: 0.92, filter: "blur(10px)" }
+              ? { opacity: 0.28, scale: 1 }
+              : { opacity: 0, scale: 0.96 }
           }
-          transition={{ duration: 0.52, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.48, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="absolute inset-0 grid grid-cols-2 overflow-hidden rounded-[32px] shadow-[0_36px_110px_rgba(0,0,0,0.34)]">
+          <div className="absolute inset-0 grid grid-cols-2 overflow-hidden rounded-[28px] shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
             <span
               className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${bookAsset("book-inner-page-left.png")})` }}
@@ -115,10 +115,7 @@ export function StoryBookCoverView({
               className="h-full w-full bg-[length:100%_100%] bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${bookAsset("book-inner-page-right.png")})` }}
             />
-            <span
-              className="absolute inset-y-0 left-1/2 h-full w-[14%] -translate-x-1/2 bg-[length:100%_100%] bg-center bg-no-repeat opacity-78"
-              style={{ backgroundImage: `url(${bookAsset("book-center-shadow.png")})` }}
-            />
+            <span className="absolute inset-y-0 left-1/2 h-full w-9 -translate-x-1/2 bg-[linear-gradient(90deg,rgba(80,61,35,0.10),rgba(20,16,12,0.15),rgba(80,61,35,0.10))]" />
           </div>
         </motion.div>
       </div>

@@ -78,7 +78,7 @@ export function StoryBookReader({
     if (openingTimerRef.current) window.clearTimeout(openingTimerRef.current);
     openingTimerRef.current = window.setTimeout(() => {
       setStage("reading");
-    }, 860);
+    }, 780);
   };
 
   return createPortal(
