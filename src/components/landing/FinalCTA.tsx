@@ -3,21 +3,21 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import logoCrystal from "@/assets/cleaned/logo-crystal-clean.png";
 
-const micro = ["Sans compte", "Sans carte bancaire", "Aperçu immédiat"];
+const micro = ["Sans compte", "Sans carte bancaire", "Aperçu en ligne immédiat"];
 
 export function FinalCTA() {
   return (
-    <section className="px-4 pb-5 pt-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[28px] bg-[#07123a] px-6 py-11 text-white shadow-[0_28px_90px_rgba(7,18,58,0.25)] sm:px-12 lg:px-16">
-        <div className="relative grid min-h-[220px] gap-8 md:grid-cols-[350px_1fr] md:items-center">
+    <section className="px-5 pb-5 pt-6 sm:px-6 sm:pt-8 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[24px] bg-[#07123a] px-5 py-9 text-center text-white shadow-[0_28px_90px_rgba(7,18,58,0.25)] sm:px-12 md:rounded-[28px] md:py-11 md:text-left lg:px-16">
+        <div className="relative grid min-h-[220px] gap-6 md:grid-cols-[350px_1fr] md:items-center md:gap-8">
           <div className="absolute inset-0 opacity-85 [background-image:radial-gradient(circle_at_14%_18%,rgba(255,255,255,0.55)_1px,transparent_2px),radial-gradient(circle_at_80%_22%,rgba(255,255,255,0.5)_1px,transparent_2px),radial-gradient(circle_at_68%_72%,rgba(255,255,255,0.36)_1px,transparent_2px),radial-gradient(circle_at_40%_40%,rgba(124,92,255,0.35),transparent_22%)]" />
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(1,6,27,0.6))]" />
-          <div className="relative hidden h-full items-center justify-center md:flex">
+          <div className="relative flex h-full items-center justify-center md:flex">
             <Image
               src={logoCrystal}
               alt=""
               sizes="120px"
-              className="h-48 w-48 object-contain drop-shadow-[0_0_70px_rgba(255,255,255,0.62)]"
+              className="h-32 w-32 object-contain drop-shadow-[0_0_70px_rgba(255,255,255,0.62)] md:h-48 md:w-48"
             />
           </div>
           <div className="relative">
@@ -33,7 +33,7 @@ export function FinalCTA() {
             >
               Créer mon aperçu gratuit
             </Link>
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start md:gap-x-5">
               {micro.map((item) => (
                 <span key={item} className="inline-flex items-center gap-2 text-xs font-bold text-white/82">
                   <span className="grid h-4 w-4 place-items-center rounded-full bg-[#55d171] text-[#07123a]">

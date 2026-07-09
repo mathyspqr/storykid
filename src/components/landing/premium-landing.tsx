@@ -21,7 +21,7 @@ import { RevealOnScroll } from "@/components/landing/RevealOnScroll";
 import { StoryKidAppMockup } from "@/components/landing/StoryKidAppMockup";
 import { landingBookExamples } from "@/data/landing-examples";
 
-const checks = ["Pas de photo d'enfant", "Pas de carte bancaire", "Aperçu immédiat"];
+const checks = ["Pas de photo d'enfant", "Pas de carte bancaire", "Aperçu en ligne immédiat"];
 
 const testimonials = [
   {
@@ -88,7 +88,7 @@ const plans = [
     price: "4,99 €",
     period: "une fois",
     description: "Le livre complet à garder, relire ou imprimer.",
-    features: ["Histoire complète", "8 à 12 pages", "Couverture illustrée", "PDF à garder"],
+    features: ["Histoire complète", "8 à 12 pages", "Couverture illustrée", "Lecture en ligne + PDF"],
     cta: "Débloquer le livre",
     featured: true,
   },
@@ -97,7 +97,7 @@ const plans = [
     price: "7,99 €",
     period: "une fois",
     description: "Pour lire ensemble ou écouter l’histoire au moment du coucher.",
-    features: ["Tout le livre digital", "Audio narré", "PDF + MP3", "À relire le soir"],
+    features: ["Lecture en ligne incluse", "Audio narré", "PDF + MP3", "À relire le soir"],
     cta: "Choisir avec audio",
     featured: false,
   },
@@ -166,7 +166,7 @@ export function PremiumLanding() {
   return (
     <main className="overflow-hidden bg-[#fbfbff] text-[#070b2d]">
       <Hero />
-      <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 pb-12 sm:px-6 lg:px-8 lg:pb-14">
         <RevealOnScroll>
           <TestimonialsStrip />
         </RevealOnScroll>
@@ -193,32 +193,32 @@ export function PremiumLanding() {
 
 function Hero() {
   return (
-    <section className="relative bg-[radial-gradient(circle_at_82%_42%,rgba(124,92,255,0.12),transparent_26%),linear-gradient(180deg,#ffffff_0%,#fbfbff_100%)] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-      <div className="mx-auto grid max-w-7xl items-center gap-9 lg:grid-cols-[0.82fr_1.18fr]">
+    <section className="relative bg-[radial-gradient(circle_at_82%_42%,rgba(124,92,255,0.12),transparent_26%),linear-gradient(180deg,#ffffff_0%,#fbfbff_100%)] px-5 py-9 sm:px-6 lg:px-8 lg:py-14">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-9">
         <div>
-          <h1 className="max-w-[560px] text-[2.8rem] font-extrabold leading-[1.02] tracking-[-0.065em] text-[#070b2d] sm:text-[4.05rem]">
+          <h1 className="max-w-[560px] text-[2.55rem] font-extrabold leading-[1.03] tracking-[-0.058em] text-[#070b2d] min-[390px]:text-[2.75rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
             Ton enfant devient le héros de son histoire du soir.
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
-          <p className="mt-5 max-w-[500px] text-lg leading-8 text-[#4c5578]">
-            Choisis un moment, ajoute quelques détails, et découvre un mini-livre
-            illustré prêt à lire ce soir.
+          <p className="mt-4 max-w-[500px] text-base font-semibold leading-7 text-[#4c5578] sm:mt-5 sm:text-lg sm:font-normal sm:leading-8">
+            Choisis un moment, ajoute quelques détails, et reçois un mini-livre
+            illustré à lire en ligne dès ce soir.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/create-story"
-              className="inline-flex h-[52px] items-center justify-center rounded-xl bg-[#ff6257] px-8 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f2554a]"
+              className="inline-flex h-[52px] w-full items-center justify-center rounded-xl bg-[#ff6257] px-8 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(255,98,87,0.25)] transition hover:-translate-y-0.5 hover:bg-[#f2554a] sm:w-auto"
             >
               Créer mon aperçu gratuit
             </Link>
             <Link
               href="#exemple"
-              className="inline-flex h-[52px] items-center justify-center rounded-xl bg-white px-8 text-sm font-extrabold text-[#070b2d] ring-1 ring-[#c7cad8] transition hover:-translate-y-0.5 hover:ring-[#070b2d]"
+              className="inline-flex h-[52px] w-full items-center justify-center rounded-xl bg-white px-8 text-sm font-extrabold text-[#070b2d] ring-1 ring-[#c7cad8] transition hover:-translate-y-0.5 hover:ring-[#070b2d] sm:w-auto"
             >
               Voir un exemple
             </Link>
           </div>
-          <div className="mt-5 grid max-w-[520px] gap-2 sm:grid-cols-3">
+          <div className="mt-5 flex max-w-[520px] flex-wrap gap-x-4 gap-y-2">
             {checks.map((item) => (
               <span key={item} className="inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-bold text-[#5f6886]">
                 <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-[#dff7e5] text-[#24a64a]">
@@ -237,7 +237,7 @@ function Hero() {
 
 function TestimonialsStrip() {
   return (
-    <section className="-mt-2 pt-5 lg:-mt-5">
+    <section className="pt-7 lg:-mt-5 lg:pt-5">
       <div className="grid gap-3 md:grid-cols-3">
         {testimonials.map((item) => (
           <article
@@ -279,7 +279,7 @@ function InputOutputPanel() {
   const book = landingBookExamples[0];
 
   return (
-    <section id="fonctionnement" className="py-10 md:py-14 lg:py-20">
+    <section id="fonctionnement" className="py-14 md:py-16 lg:py-20">
       <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
         <div>
           <SectionKicker>Fonctionnement</SectionKicker>
@@ -293,7 +293,7 @@ function InputOutputPanel() {
         </div>
       </div>
 
-      <div className="grid items-center gap-4 lg:grid-cols-[1.12fr_72px_1fr]">
+      <div className="grid items-center gap-5 lg:grid-cols-[1.12fr_72px_1fr] lg:gap-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {inputs.map((item) => {
             const Icon = item.icon;
@@ -312,7 +312,7 @@ function InputOutputPanel() {
             );
           })}
         </div>
-        <div className="flex items-center justify-center gap-4 text-[#98a0b8] lg:gap-0">
+        <div className="flex items-center justify-center gap-4 py-1 text-[#98a0b8] lg:gap-0 lg:py-0">
           <span className="hidden h-px flex-1 border-t border-dashed border-[#c7cbd8] lg:block" />
           <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#20145f] text-white shadow-[0_16px_36px_rgba(32,20,95,0.26)]">
             <WandSparkles className="h-6 w-6" />
@@ -321,7 +321,7 @@ function InputOutputPanel() {
         </div>
         <div className="grid gap-4 rounded-2xl border border-[#e9ebf4] bg-white p-4 shadow-[0_18px_44px_rgba(15,23,42,0.055)] md:grid-cols-[130px_1fr_1fr]">
           <PremiumBookCover book={book} size="demo" />
-          <div className="border-r border-[#e4e6ef] pr-4">
+          <div className="border-[#e4e6ef] md:border-r md:pr-4">
             <p className="text-xs font-extrabold text-[#070b2d]">Page 1</p>
             <p className="mt-3 text-sm leading-6 text-[#4c5578]">{book.excerpt}</p>
           </div>
@@ -334,7 +334,7 @@ function InputOutputPanel() {
           </div>
         </div>
       </div>
-      <div className="mt-5 grid gap-3 md:grid-cols-4">
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
         {howSteps.map(([number, title, text]) => (
           <div key={number} className="flex gap-3 rounded-2xl bg-white/60 p-3">
             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#f0edff] text-xs font-extrabold text-[#6b55ef]">
@@ -355,14 +355,14 @@ function WhatChildGetsSection() {
   const book = landingBookExamples[0];
 
   return (
-    <section className="py-12 md:py-16 lg:py-24">
-      <div className="mx-auto mb-10 max-w-2xl text-center">
+    <section className="py-14 md:py-16 lg:py-24">
+      <div className="mx-auto mb-8 max-w-2xl text-left md:mb-10 md:text-center">
         <SectionKicker>Résultat</SectionKicker>
         <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-4xl">
           Ce que ton enfant reçoit <EditorialAccent>vraiment.</EditorialAccent>
         </h2>
         <p className="mt-3 text-base font-semibold leading-7 text-[#626b89]">
-          Un mini-livre court, doux, illustré et pensé pour être lu le soir.
+          Un mini-livre digital court, doux, illustré et pensé pour être lu le soir.
         </p>
       </div>
       <div className="grid items-stretch gap-5 md:grid-cols-3">
@@ -371,7 +371,7 @@ function WhatChildGetsSection() {
             key={item.title}
             className="flex h-full flex-col overflow-hidden rounded-[28px] border border-[#e9ebf4] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.055)]"
           >
-            <div className="flex h-[242px] items-center justify-center bg-[radial-gradient(circle_at_50%_10%,rgba(124,92,255,0.10),transparent_30%),#fcfcff] p-6">
+            <div className="flex h-[220px] items-center justify-center bg-[radial-gradient(circle_at_50%_10%,rgba(124,92,255,0.10),transparent_30%),#fcfcff] p-5 md:h-[242px] md:p-6">
               {item.visual === "cover" && <PremiumBookCover book={book} size="demo" />}
               {item.visual === "spread" && (
                 <Image
@@ -408,8 +408,8 @@ function WhatChildGetsSection() {
 
 function PricingSection() {
   return (
-    <section id="tarifs" className="py-12 md:py-16 lg:py-24">
-      <div className="mx-auto mb-9 max-w-2xl text-center">
+    <section id="tarifs" className="py-14 md:py-16 lg:py-24">
+      <div className="mx-auto mb-8 max-w-2xl text-left md:mb-9 md:text-center">
         <SectionKicker>Tarifs</SectionKicker>
         <h2 className="text-3xl font-extrabold tracking-[-0.05em] md:text-4xl">
           Teste gratuitement. Paie seulement si l’histoire <EditorialAccent>te plaît.</EditorialAccent>
@@ -440,7 +440,7 @@ function PricingSection() {
               <p className="text-5xl font-extrabold tracking-[-0.065em] text-[#070b2d]">{plan.price}</p>
               <p className="pb-1 text-sm font-extrabold text-[#8a91a6]">{plan.period}</p>
             </div>
-            <p className="mt-3 min-h-16 text-sm font-semibold leading-6 text-[#626b89]">
+            <p className="mt-3 text-sm font-semibold leading-6 text-[#626b89] md:min-h-16">
               {plan.description}
             </p>
             <div className="mt-5 flex-1 space-y-2.5">
@@ -508,9 +508,9 @@ function PricingSection() {
 
 function FAQPanel() {
   return (
-    <section className="pb-8 pt-12 md:pb-10 md:pt-16 lg:pb-12 lg:pt-20">
+    <section className="pb-6 pt-12 md:pb-10 md:pt-16 lg:pb-12 lg:pt-20">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-8 text-center">
+        <div className="mb-7 text-left md:mb-8 md:text-center">
           <SectionKicker>FAQ</SectionKicker>
           <h2 className="text-3xl font-extrabold tracking-[-0.05em]">
             Questions <EditorialAccent>fréquentes</EditorialAccent>
