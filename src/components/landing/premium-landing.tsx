@@ -196,13 +196,14 @@ function Hero() {
     <section className="relative bg-[radial-gradient(circle_at_82%_42%,rgba(124,92,255,0.12),transparent_26%),linear-gradient(180deg,#ffffff_0%,#fbfbff_100%)] px-5 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-9">
         <div>
-          <h1 className="max-w-[560px] text-[2.55rem] font-extrabold leading-[1.03] tracking-[-0.058em] text-[#070b2d] min-[390px]:text-[2.75rem] sm:text-[4.05rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
-            Ton enfant devient le héros de son histoire du soir.
+          <h1 className="max-w-[610px] text-[2.28rem] font-extrabold leading-[1.04] tracking-[-0.055em] text-[#070b2d] min-[390px]:text-[2.52rem] sm:text-[3.95rem] sm:leading-[1.02] sm:tracking-[-0.065em]">
+            Crée un mini-livre personnalisé
+            <span className="block">pour un moment de ton enfant.</span>
             <EditorialAccent className="block">En 2 minutes.</EditorialAccent>
           </h1>
           <p className="mt-4 max-w-[500px] text-base font-semibold leading-7 text-[#4c5578] sm:mt-5 sm:text-lg sm:font-normal sm:leading-8">
-            Choisis un moment, ajoute quelques détails, et reçois un mini-livre
-            illustré à lire en ligne dès ce soir.
+            Peur du noir, rentrée, colère ou confiance : StoryKid transforme
+            quelques détails en une histoire douce à lire en ligne le soir.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -228,6 +229,9 @@ function Hero() {
               </span>
             ))}
           </div>
+          <p className="mt-3 max-w-[430px] text-xs font-bold leading-5 text-[#8a91a6]">
+            Pour les 3-9 ans · Peurs, émotions, rentrée, coucher
+          </p>
         </div>
         <StoryKidAppMockup />
       </div>
@@ -362,7 +366,7 @@ function WhatChildGetsSection() {
           Ce que ton enfant reçoit <EditorialAccent>vraiment.</EditorialAccent>
         </h2>
         <p className="mt-3 text-base font-semibold leading-7 text-[#626b89]">
-          Un mini-livre digital court, doux, illustré et pensé pour être lu le soir.
+          Un mini-livre digital, court et illustré, pensé pour être lu le soir.
         </p>
       </div>
       <div className="grid items-stretch gap-5 md:grid-cols-3">
