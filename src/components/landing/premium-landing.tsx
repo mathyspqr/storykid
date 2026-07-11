@@ -245,13 +245,7 @@ function TestimonialsStrip() {
             className="grid min-h-[104px] grid-cols-[60px_1fr] gap-4 rounded-2xl border border-[#e8eaf3] bg-white/90 p-4 shadow-[0_12px_34px_rgba(15,23,42,0.045)] backdrop-blur"
           >
             <div className="relative h-14 w-14 overflow-hidden rounded-full shadow-sm ring-1 ring-[#e4e6ef]">
-              <Image
-                src={item.avatar}
-                alt=""
-                fill
-                sizes="64px"
-                className="object-cover"
-              />
+              <Image src={item.avatar} alt="" fill sizes="64px" className="object-cover" />
             </div>
             <div>
               <p className="relative text-[0.95rem] font-extrabold italic leading-5 text-[#141936]">
@@ -489,7 +483,7 @@ function PricingSection() {
           </div>
         </div>
 
-        <div className="mt-5 rounded-2xl bg-white/88 p-4 text-left shadow-[0_12px_28px_rgba(91,71,210,0.07)] ring-1 ring-[#ebe8ff] md:mt-0 md:min-w-[184px]">
+        <div className="mt-5 rounded-2xl bg-white/88 p-4 text-left shadow-[0_12px_28px_rgba(91,71,210,0.07)] ring-1 ring-[#e7e4ff] md:mt-0 md:min-w-[184px]">
           <div className="flex items-end gap-1">
             <p className="text-4xl font-extrabold tracking-[-0.065em] text-[#070b2d]">
               {subscriptionPlan.price}

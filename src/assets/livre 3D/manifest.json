@@ -1,0 +1,45 @@
+{
+  "target": "/public/assets/book-generic/",
+  "assets": [
+    {
+      "file": "book-paper-texture.png",
+      "role": "Texture papier crème subtile pour fonds de pages."
+    },
+    {
+      "file": "book-page-stack-right.png",
+      "role": "Pile de pages visible à droite du livre fermé."
+    },
+    {
+      "file": "book-page-stack-left.png",
+      "role": "Pile de pages visible à gauche si besoin."
+    },
+    {
+      "file": "book-spine.png",
+      "role": "Tranche générique neutre du livre fermé."
+    },
+    {
+      "file": "book-inner-page-left.png",
+      "role": "Fond page gauche du livre ouvert."
+    },
+    {
+      "file": "book-inner-page-right.png",
+      "role": "Fond page droite du livre ouvert."
+    },
+    {
+      "file": "book-center-shadow.png",
+      "role": "Ombre de reliure centrale pour le livre ouvert."
+    },
+    {
+      "file": "book-page-turn-overlay.png",
+      "role": "Calque de page qui tourne pour l’animation."
+    },
+    {
+      "file": "book-cover-shadow.png",
+      "role": "Ombre sous le livre fermé / couverture."
+    },
+    {
+      "file": "book-glow-mask.png",
+      "role": "Halo doux derrière le livre, peut être colorisé via CSS."
+    }
+  ]
+}
