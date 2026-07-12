@@ -1,40 +1,12 @@
 {
-  "name": "storykid",
-  "version": "0.1.0",
+  "name": "storykid-workspace",
   "private": true,
+  "workspaces": ["client", "server"],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "test:e2e": "node --test tests/create-flow.test.mjs"
+    "dev": "concurrently -n client,server -c cyan,magenta \"npm run dev --workspace=client\" \"npm run dev --workspace=server\"",
+    "build": "npm run build --workspace=client && npm run build --workspace=server",
+    "lint": "npm run lint --workspace=client && npm run lint --workspace=server",
+    "test": "npm run test --workspace=client && npm run test --workspace=server"
   },
-  "dependencies": {
-    "@radix-ui/react-select": "^2.2.6",
-    "@radix-ui/react-slot": "^1.2.4",
-    "@react-three/fiber": "^9.6.1",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.23.24",
-    "lucide-react": "^0.468.0",
-    "next": "^15.5.7",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.3.1",
-    "three": "^0.185.1"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "@types/three": "^0.185.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.17.0",
-    "eslint-config-next": "^15.5.20",
-    "playwright": "^1.61.1",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2"
-  }
+  "devDependencies": {"concurrently":"^9.2.1"}
 }

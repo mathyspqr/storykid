@@ -1,5 +1,0 @@
-import { StoryForm } from "@/components/story/story-form";
-
-export default function CreateStoryPage() {
-  return <StoryForm />;
-}

@@ -1,0 +1,31 @@
+{
+  "name": "@storykid/server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "test": "node --test tests/supabase-production.test.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.110.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "pdfkit": "^0.19.1",
+    "stripe": "^22.3.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.10.2",
+    "@types/pdfkit": "^0.17.6",
+    "eslint": "^9.17.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.2"
+  }
+}

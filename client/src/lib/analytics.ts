@@ -1,0 +1,3 @@
+import { apiFetch } from "@/lib/api";
+export type StoryKidEvent = "create_story_started"|"questionnaire_step_viewed"|"questionnaire_option_selected"|"questionnaire_completed"|"preview_requested"|"preview_ready"|"preview_opened"|"preview_page_read"|"auth_gate_viewed"|"account_created"|"paywall_viewed"|"checkout_started"|"payment_completed"|"full_story_ready"|"library_opened"|"story_opened";
+export function track(eventName:StoryKidEvent,metadata:Record<string,string|number|boolean>={},storyId?:string){void apiFetch("/api/analytics",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({eventName,metadata,storyId}),keepalive:true}).catch(()=>{})}

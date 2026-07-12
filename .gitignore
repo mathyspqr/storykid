@@ -2,9 +2,10 @@
 /node_modules
 
 # next.js
-/.next/
+/client/.next/
 /out/
 /test-results/
+/client/test-results/
 
 # production
 /build
@@ -20,8 +21,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env
-.env
-.env*.local
+/client/.env
+/client/.env*.local
+/server/.env
+/server/.env*.local
 
 # vercel
 .vercel

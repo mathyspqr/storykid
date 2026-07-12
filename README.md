@@ -1,52 +1,33 @@
 # StoryKid
 
-StoryKid est une web app qui permet aux parents de creer une histoire personnalisee pour leur enfant en quelques minutes. L'enfant devient le heros d'une histoire douce, illustree et adaptee a une emotion, une etape de vie ou un moment important.
+StoryKid est un studio de création d’histoires personnalisées pour enfants de 3 à 9 ans.
 
-Le positionnement central n'est pas "generateur d'histoires IA", mais :
+## Structure
 
-> Creer une histoire personnalisee pour aider un enfant a vivre une emotion, une etape de vie ou un moment important avec douceur.
+- `client/` — application Next.js complète : landing, tunnel `/creer`, lecteur, bibliothèque et compte.
+- `server/` — API Express : Supabase privilégié, Stripe, génération Gemini, workers, migrations et sécurité.
 
-## Documents principaux
+Le client ne contient aucune clé secrète, aucun accès service-role et aucune logique Stripe ou IA.
 
-- [Contexte projet](docs/00-project-context.md)
-- [PRD produit](docs/product/prd.md)
-- [Specification fonctionnelle MVP](docs/product/functional-spec.md)
-- [Architecture technique](docs/technical/architecture.md)
-- [Base de donnees Supabase](docs/technical/database.md)
-- [Integration IA](docs/technical/ai-generation.md)
-- [Stripe](docs/technical/stripe.md)
-- [Generation d'images](docs/technical/image-generation.md)
-- [Plateforme de marque](docs/brand/brand-platform.md)
-- [Guide copywriting](docs/brand/copywriting-guide.md)
-- [Design system](docs/design/design-system.md)
-- [Positionnement marketing](docs/marketing/positioning.md)
-- [Roadmap](docs/product/roadmap.md)
-- [Checklist de lancement](docs/operations/launch-checklist.md)
-
-## Lancer l'app
+## Lancer localement
 
 ```bash
 npm install
 npm run dev
 ```
 
-Puis ouvrir :
+- Application : `http://localhost:3001`
+- API : `http://localhost:3002/health`
 
-```txt
-http://localhost:3000
-```
+## Configuration obligatoire
 
-## MVP attendu
+1. Copier les variables serveur dans `server/.env` à partir de `server/.env.example`.
+2. Ajouter les variables publiques Supabase et `NEXT_PUBLIC_API_URL` dans `client/.env.local`.
+3. Appliquer `server/supabase/migrations/20260711210000_storykid_production.sql`.
+4. Activer Anonymous Sign-Ins dans Supabase Auth.
+5. Configurer Stripe et son webhook `POST /api/stripe/webhook`.
 
-Le MVP doit permettre de :
+La documentation opérationnelle est dans [la configuration de production](server/docs/technical/production-setup.md) et [la checklist d’activation](server/docs/technical/activation-checklist.md).
 
-- comprendre la promesse en moins de 5 secondes ;
-- choisir un theme d'histoire ;
-- renseigner quelques informations sur l'enfant ;
-- generer une histoire fictive cote front dans un premier temps ;
-- afficher une page resultat avec couverture, resume, pages, morale et conseils de lecture ;
-- preparer les evolutions Supabase, Stripe, OpenAI, PDF, audio et livre imprime.
-
-## Ton produit
-
-StoryKid doit rester doux, rassurant, premium, familial et moderne. Le produit ne doit jamais pretendre remplacer un psychologue, un medecin ou un professionnel de sante.
+Pour faire tourner les textes IA sur un PC fixe avec Ollama, suis le guide
+[IA locale sur le PC de génération](server/docs/technical/local-ai-pc.md).
